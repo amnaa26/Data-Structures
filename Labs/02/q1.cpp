@@ -9,39 +9,71 @@
 using namespace std;
 
 int main() {
-    int **arr = new int*[3];  // Jagged array declaration
-    int Size[3];  // Array to store the size of each row
-    int i, j;
+    // Creating a jagged array with 5 rows
+    int* jaggedArray[5];
+    int rowSize[5]; // Array to store the size of each row
 
-    // Getting the size of each row
-    for(i = 0; i < 3; i++) {
-        cout << "Row " << i + 1 << " size: ";
-        cin >> Size[i];
-        arr[i] = new int[Size[i]];  // Allocating memory for each row
-    }
+   
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter the size of row " << i + 1 << ": ";
+        cin >> rowSize[i];  
+        jaggedArray[i] = new int[rowSize[i]];  
 
-    // Getting elements for each row
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < Size[i]; j++) {
-            cout << "Enter row " << i + 1 << " element " << j + 1 << ": ";
-            cin >> arr[i][j];
+    
+        for (int j = 0; j < rowSize[i]; j++) {
+            cout << "Enter element " << j + 1 << " for row " << i + 1 << ": ";
+            cin >> jaggedArray[i][j];
         }
     }
 
-    // Display the jagged array
-    cout << "\nDisplaying the jagged array:\n";
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < Size[i]; j++) {
-            cout << arr[i][j] << " ";
+    
+    cout << "\nOriginal Jagged Array:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << "Row " << i + 1 << ": ";
+        for (int j = 0; j < rowSize[i]; j++) {
+            cout << jaggedArray[i][j] << " ";
         }
         cout << endl;
     }
 
-    // Deallocating memory
-    for(i = 0; i < 3; i++) {
-        delete[] arr[i];
+    // Resizing each row to have 10 elements
+    cout << "\nResizing rows to 10 elements..." << endl;
+    for (int i = 0; i < 5; i++) {
+        int* newRow = new int[10];  // Allocate new row with size 10
+
+        // Copy the existing elements to the new row
+        for (int j = 0; j < rowSize[i]; j++) {
+            newRow[j] = jaggedArray[i][j];
+        }
+
+       
+        for (int j = rowSize[i]; j < 10; j++) {
+            newRow[j] = 0;  
+        }
+
+        // Deallocate the old row and assign the new row
+        delete[] jaggedArray[i];
+        jaggedArray[i] = newRow;
+
+        // Update the row size
+        rowSize[i] = 10;
     }
-    delete[] arr;
+
+    // Printing the resized jagged array
+    cout << "\nResized Jagged Array:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << "Row " << i + 1 << ": ";
+        for (int j = 0; j < rowSize[i]; j++) {
+            cout << jaggedArray[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    // Deleting dynamically allocated memory
+    for (int i = 0; i < 5; i++) {
+        delete[] jaggedArray[i];
+    }
 
     return 0;
 }
+
