@@ -51,33 +51,35 @@ public:
         cout << "NULL\n";
     }
 
-    // Sorting the list using bubble sort
-    void sortList() {
-        if (head == NULL) {
-            cout << "List is empty.\n";
-            return;
-        }
-
-        Node* current = head;
-        Node* index = NULL;
-        int temp;
-
-        // Bubble Sort
-        while (current != NULL) {
-            index = current->next;
-            while (index != NULL) {
-                if (current->data > index->data) {
-                    // Swapping the data
-                    temp = current->data;
-                    current->data = index->data;
-                    index->data = temp;
+   void bubbleSort(){
+        if(head == NULL || head->next == NULL) return;
+        bool swapped = true;
+        Node *last = NULL;
+        while(swapped){
+            swapped = false;
+            Node *current = head;
+            Node *previous = NULL;
+            while(current->next != last){
+                Node *nextnode = current->next;
+                if(current->data > nextnode->data){
+                    if(previous == NULL) head = nextnode;
+                    else previous->next = nextnode;
+                    current->next = nextnode->next;
+                    nextnode->next = current;
+                    swapped = true;
+                    previous = nextnode;
                 }
-                index = index->next;
+
+                else{
+                    previous = current;
+                    current = nextnode;
+                }
             }
-            current = current->next;
-        }
-        cout << "List sorted successfully.\n";
+
+            last = current;
+        } 
     }
+
 
     
     void removeDuplicates() {
@@ -119,7 +121,7 @@ int main() {
     cout << "Original List: ";
     list.display();
 
-    list.sortList();
+    list.bubbleSort();
     cout << "Sorted List: ";
     list.display();
 
