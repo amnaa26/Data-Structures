@@ -63,30 +63,5 @@ int main() {
         cout << "T2 is a subtree of T1." << endl;
     } else {
         cout << "T2 is NOT a subtree of T1." << endl;
-    }
-
-    // deallocating memory
-    delete T1->left->right->left; 
-    delete T1->left->right;        
-    delete T1->left->left;         
-    delete T1->left;               
-    delete T1->right;              
-    delete T1;                     
-    delete T2->left;               
-    delete T2->right;              
-    delete T2;                     
+    }                   
 }
-
-
-/*for my understanding: 
-    // Deleting node with value 0
-    // Deleting node with value 2
-    // Deleting node with value 1
-    // Deleting node with value 4
-    // Deleting node with value 5
-    // Deleting root node
-    // Deleting node with value 1
-    // Deleting node with value 2
-    // Deleting root node
-
-*/
