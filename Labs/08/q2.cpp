@@ -113,13 +113,4 @@ int main() {
     cout << "Zigzag Level Order Traversal: ";
     zigzagLevelOrder(root);
     cout << endl;
-
-    //deallocating memory
-    delete root->left->left;
-    delete root->left->right;
-    delete root->right->left;
-    delete root->right->right;
-    delete root->left;
-    delete root->right;
-    delete root;
 }
