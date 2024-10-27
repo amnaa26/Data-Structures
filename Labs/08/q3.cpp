@@ -57,14 +57,4 @@ int main() {
 
     cout << "Maximum Profit Path: " << analyzer.maxProfit << endl;
 
-    // deallocating memory
-    delete root->left->left;
-    delete root->left->right;
-    delete root->right->right->left;
-    delete root->right->right->right;
-    delete root->left;
-    delete root->right->right;
-    delete root->right;
-    delete root;
-
 }
