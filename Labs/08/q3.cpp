@@ -67,5 +67,4 @@ int main() {
     delete root->right;
     delete root;
 
-    return 0;
 }
